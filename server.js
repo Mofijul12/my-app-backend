@@ -10,9 +10,14 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, {
+  serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
+})
 .then(() => console.log('MongoDB Connected'))
-.catch(err => console.log('MongoDB Error:', err));
+.catch(err => {
+  console.error('MongoDB Error:', err);
+  process.exit(1); // Exit if can't connect
+});
 
 // Item Schema
 const itemSchema = new mongoose.Schema({
