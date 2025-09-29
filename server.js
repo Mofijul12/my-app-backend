@@ -9,7 +9,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://my-app-frontend-beta.vercel.app/'  // Replace with your actual frontend URL
+    'https://my-app-frontend-beta.vercel.app'  // No trailing slash!
   ],
   credentials: true
 }));
